@@ -1,5 +1,6 @@
 package pro.security.amg.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pro.security.amg.model.Person;
@@ -14,8 +15,8 @@ public class PersonController {
 
    private List<Person> persons = new ArrayList<>(
             Arrays.asList(
-                    new Person("Ringo Star", 42),
-                    new Person("George Harrison", 40)
+                    new Person("1","Ringo Star", 42),
+                    new Person("2","George Harrison", 40)
             )
     );
 
@@ -24,5 +25,15 @@ public class PersonController {
     List<Person> showAll(){
         return persons;
     }
+    @RequestMapping("/get/{id}")
+    Person show(@PathVariable("id") String id){
+        return persons.get(0);
+    }
+
+     @RequestMapping("/delete/{id}")
+    Person delete(@PathVariable("id") String id){
+        return persons.get(0);
+    }
+
 
 }

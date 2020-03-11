@@ -12,10 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static pro.security.amg.security.ApplicationUserRole.*;
+
 @EnableWebSecurity
 @Configuration
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
-
 
     private final PasswordEncoder passwordEncoder;
 
@@ -26,26 +27,39 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.
-                authorizeRequests().
-              antMatchers("/", "/css", "/js").permitAll().
-                anyRequest().
-                authenticated().
-                and().
-                httpBasic();
+        http
+                .authorizeRequests()
+                .antMatchers("/", "/css", "/js")
+                .permitAll()
+                .antMatchers("/api/**").hasRole(ADMIN_ROLE.name())
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic()
+        ;
     }
 
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
-        UserDetails user = User
+        UserDetails doctor = User
                 .builder()
-                .username("user")
-                .password(passwordEncoder.encode("user"))
-                .roles("User")
+                .username("doctor")
+                .password(passwordEncoder.encode("doctor"))
+                .roles(DOCTOR_ROLE.name())
                 .build();
 
-        return new InMemoryUserDetailsManager(user);
+        UserDetails admin = User
+                .builder()
+                .username("admin")
+                .password(passwordEncoder.encode("admin"))
+                .roles(ADMIN_ROLE.name())
+                .build();
+
+        return new InMemoryUserDetailsManager(
+                doctor,
+                admin
+        );
     }
 
 

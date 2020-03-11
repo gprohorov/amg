@@ -3,6 +3,8 @@ package pro.security.amg.model;
 
 
 
+import com.google.common.base.MoreObjects;
+
 import java.util.Objects;
 
 
@@ -63,7 +65,7 @@ public class Person {
     public int hashCode() {
         return Objects.hash(getId());
     }
-
+/*
     @Override
     public String toString() {
         return "Person{" +
@@ -71,5 +73,15 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }*/
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .omitNullValues()
+                .add("id", this.id)
+                .add("name",this.name)
+                .add("age",this.age)
+                .toString();
     }
 }
