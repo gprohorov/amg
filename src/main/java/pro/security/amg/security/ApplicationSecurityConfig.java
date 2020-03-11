@@ -20,19 +20,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests().
-          //      antMatchers("/", "/css", "/js").permitAll().
+              antMatchers("/", "/css", "/js").permitAll().
                 anyRequest().
                 authenticated().
                 and().
                 httpBasic();
     }
 
-/*    @Override
-    @Bean
-    protected UserDetailsService userDetailsService() {
-        UserDetails admin = User.builder().username("admin").password("admin")
-                .roles("ADMIN").build();
-
-        return new InMemoryUserDetailsManager(admin);
-    }*/
 }
