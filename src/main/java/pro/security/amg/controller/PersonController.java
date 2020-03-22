@@ -1,5 +1,6 @@
 package pro.security.amg.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,15 +23,19 @@ public class PersonController {
 
 
     @RequestMapping("get/list")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DOCTOR', 'ROLE_INTERN')")
     List<Person> showAll(){
         return persons;
     }
+
+
     @RequestMapping("/get/{id}")
     Person show(@PathVariable("id") String id){
         return persons.get(0);
     }
 
-     @RequestMapping("/delete/{id}")
+    @RequestMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('person:write')")
     Person delete(@PathVariable("id") String id){
 
          System.out.println("Person deleted");
