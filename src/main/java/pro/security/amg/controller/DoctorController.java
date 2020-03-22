@@ -23,7 +23,7 @@ public class DoctorController {
     );
 
 
-    @RequestMapping("/list")
+    @RequestMapping("get/list")
     List<Doctor> showAll(){
         return doctors;
     }
@@ -34,6 +34,8 @@ public class DoctorController {
 
      @RequestMapping("/delete/{id}")
      Doctor delete(@PathVariable("id") String id){
+         System.out.println("Doctor deleted");
+
         return doctors.get(0);
     }
 

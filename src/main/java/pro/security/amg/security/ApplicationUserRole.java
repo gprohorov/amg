@@ -7,8 +7,11 @@ import java.util.Set;
 import static pro.security.amg.security.ApplicatioUserPermission.*;
 
 public enum ApplicationUserRole {
-    DOCTOR_ROLE(Sets.newHashSet()),
-    ADMIN_ROLE(Sets.newHashSet(PERSON_READ, PERSON_WRITE));
+
+    ADMIN_ROLE(Sets.newHashSet(PERSON_READ, PERSON_WRITE, DOCTOR_READ, DOCTOR_WRITE, INTERN_READ, INTERN_WRITE)),
+    DOCTOR_ROLE(Sets.newHashSet(PERSON_READ, PERSON_WRITE, INTERN_READ)),
+    INTERN_ROLE(Sets.newHashSet(PERSON_READ)),
+    PERSON_ROLE(Sets.newHashSet());
 
 
     private final Set<ApplicatioUserPermission> permissions;

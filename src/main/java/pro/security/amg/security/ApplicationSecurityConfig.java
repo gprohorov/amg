@@ -31,7 +31,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/css", "/js")
                 .permitAll()
+                //.antMatchers("/api/intern/get/**").hasAnyRole(DOCTOR_ROLE.name(), ADMIN_ROLE.name())
+
+
+                .antMatchers("/api/person/get/**").hasAnyRole(INTERN_ROLE.name(), DOCTOR_ROLE.name(), ADMIN_ROLE.name())
+                .antMatchers("/api/person/**").hasAnyRole(DOCTOR_ROLE.name(), ADMIN_ROLE.name())
+
+             .antMatchers("/api/intern/get/**").hasAnyRole(DOCTOR_ROLE.name(), ADMIN_ROLE.name())
+
+              //  .antMatchers("/api/person/**").hasAnyRole(DOCTOR_ROLE.name(), ADMIN_ROLE.name())
+
                 .antMatchers("/api/**").hasRole(ADMIN_ROLE.name())
+
+
+
+
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -56,9 +70,25 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles(ADMIN_ROLE.name())
                 .build();
 
+        UserDetails person = User
+                .builder()
+                .username("person")
+                .password(passwordEncoder.encode("person"))
+                .roles(PERSON_ROLE.name())
+                .build();
+
+        UserDetails intern = User
+                .builder()
+                .username("intern")
+                .password(passwordEncoder.encode("intern"))
+                .roles(INTERN_ROLE.name())
+                .build();
+
         return new InMemoryUserDetailsManager(
                 doctor,
-                admin
+                admin,
+                person,
+                intern
         );
     }
 

@@ -3,8 +3,13 @@ package pro.security.amg.security;
 public enum ApplicatioUserPermission {
 
     PERSON_READ("person:read"),
+    PERSON_WRITE("person:write"),
+    DOCTOR_READ("doctor:read"),
+    DOCTOR_WRITE("doctor:write"),
+    INTERN_READ("intern:read"),
+    INTERN_WRITE("intern:write")
 
-    PERSON_WRITE("person:write");
+    ;
 
     private final String permission;
 

@@ -22,7 +22,7 @@ public class InternController {
     );
 
 
-    @RequestMapping("/list")
+    @RequestMapping("get/list")
     List<Intern> showAll(){
         return interns;
     }
@@ -33,6 +33,9 @@ public class InternController {
 
      @RequestMapping("/delete/{id}")
      Intern delete(@PathVariable("id") String id){
+
+         System.out.println("Intern deleted");
+
         return interns.get(0);
     }
 

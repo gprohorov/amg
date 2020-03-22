@@ -21,7 +21,7 @@ public class PersonController {
     );
 
 
-    @RequestMapping("/list")
+    @RequestMapping("get/list")
     List<Person> showAll(){
         return persons;
     }
@@ -32,6 +32,9 @@ public class PersonController {
 
      @RequestMapping("/delete/{id}")
     Person delete(@PathVariable("id") String id){
+
+         System.out.println("Person deleted");
+
         return persons.get(0);
     }
 
