@@ -34,14 +34,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/api/intern/get/**").hasAnyRole(DOCTOR .name(), ADMIN .name())
 
 
-                .antMatchers("/api/person/get/**").hasAnyRole(INTERN .name(), DOCTOR .name(), ADMIN .name())
-                .antMatchers("/api/person/**").hasAnyRole(DOCTOR .name(), ADMIN .name())
-
-             .antMatchers("/api/intern/get/**").hasAnyRole(DOCTOR .name(), ADMIN .name())
+             .antMatchers("/api/person/get/**").hasAnyRole(INTERN.name(), DOCTOR.name(), ADMIN.name())
+             .antMatchers("/api/person/**").hasAnyRole(DOCTOR.name(), ADMIN.name())
+             .antMatchers("/api/intern/get/**").hasAnyRole(DOCTOR.name(), ADMIN.name())
 
               //  .antMatchers("/api/person/**").hasAnyRole(DOCTOR .name(), ADMIN .name())
 
-                .antMatchers("/api/**").hasRole(ADMIN .name())
+                .antMatchers("/api/**").hasRole(ADMIN.name())
 
 
 
@@ -60,28 +59,28 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .builder()
                 .username("doctor")
                 .password(passwordEncoder.encode("doctor"))
-                .roles(DOCTOR .name())
+                .roles(DOCTOR.name())
                 .build();
 
         UserDetails admin = User
                 .builder()
                 .username("admin")
                 .password(passwordEncoder.encode("admin"))
-                .roles(ADMIN .name())
+                .roles(ADMIN.name())
                 .build();
 
         UserDetails person = User
                 .builder()
                 .username("person")
                 .password(passwordEncoder.encode("person"))
-                .roles(PERSON .name())
+                .roles(PERSON.name())
                 .build();
 
         UserDetails intern = User
                 .builder()
                 .username("intern")
                 .password(passwordEncoder.encode("intern"))
-                .roles(INTERN .name())
+                .roles(INTERN.name())
                 .build();
 
         return new InMemoryUserDetailsManager(
