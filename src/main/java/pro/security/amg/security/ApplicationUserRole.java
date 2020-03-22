@@ -8,10 +8,10 @@ import static pro.security.amg.security.ApplicatioUserPermission.*;
 
 public enum ApplicationUserRole {
 
-    ADMIN_ROLE(Sets.newHashSet(PERSON_READ, PERSON_WRITE, DOCTOR_READ, DOCTOR_WRITE, INTERN_READ, INTERN_WRITE)),
-    DOCTOR_ROLE(Sets.newHashSet(PERSON_READ, PERSON_WRITE, INTERN_READ)),
-    INTERN_ROLE(Sets.newHashSet(PERSON_READ)),
-    PERSON_ROLE(Sets.newHashSet());
+    ADMIN(Sets.newHashSet(PERSON_READ, PERSON_WRITE, DOCTOR_READ, DOCTOR_WRITE, INTERN_READ, INTERN_WRITE)),
+    DOCTOR(Sets.newHashSet(PERSON_READ, PERSON_WRITE, INTERN_READ)),
+    INTERN(Sets.newHashSet(PERSON_READ)),
+    PERSON(Sets.newHashSet());
 
 
     private final Set<ApplicatioUserPermission> permissions;
