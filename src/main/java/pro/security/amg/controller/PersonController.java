@@ -23,7 +23,6 @@ public class PersonController {
 
 
     @RequestMapping("get/list")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DOCTOR', 'ROLE_INTERN')")
     List<Person> showAll(){
         return persons;
     }
@@ -35,7 +34,6 @@ public class PersonController {
     }
 
     @RequestMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('person:write')")
     Person delete(@PathVariable("id") String id){
 
          System.out.println("Person deleted");
