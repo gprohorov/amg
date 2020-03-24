@@ -1,8 +1,7 @@
 package pro.security.amg.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 import pro.security.amg.model.Person;
 
 import java.util.ArrayList;
@@ -36,6 +35,15 @@ public class PersonController {
          System.out.println("Person deleted");
 
         return persons.get(0);
+    }
+
+    @PostMapping("/create")
+    Person create(@RequestBody Person person){
+
+         System.out.println("Person created");
+        persons.add(person);
+
+        return person;
     }
 
 

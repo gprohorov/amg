@@ -43,8 +43,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET,"/api/person/get/**").hasAuthority(PERSON_READ.getPermission())
                 .antMatchers(HttpMethod.GET,"/api/person/**").hasAuthority(PERSON_WRITE.getPermission())
+                .antMatchers(HttpMethod.POST,"/api/person/**").hasAuthority(PERSON_WRITE.getPermission())
                 .antMatchers(HttpMethod.GET,"/api/intern/get/**").hasAuthority(INTERN_READ.getPermission())
+                .antMatchers(HttpMethod.GET,"/api/doctor/get/**").hasAuthority(DOCTOR_READ.getPermission())
                 .antMatchers(HttpMethod.GET,"/api/intern/**").hasAuthority(INTERN_WRITE.getPermission())
+                .antMatchers(HttpMethod.GET,"/api/doctor/**").hasAuthority(DOCTOR_WRITE.getPermission())
+               // .antMatchers(HttpMethod.POST,"/api/**").hasAuthority(DOCTOR_WRITE.getPermission())
 
               //  .antMatchers("/api/**").hasRole(ADMIN.name())
 
