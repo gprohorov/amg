@@ -3,19 +3,13 @@ package pro.security.amg.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
-import static pro.security.amg.security.ApplicatioUserPermission.*;
-import static pro.security.amg.security.ApplicationUserRole.*;
+import pro.security.amg.auth.ApplicationUserService;
 
 @EnableWebSecurity
 @Configuration
@@ -23,10 +17,13 @@ import static pro.security.amg.security.ApplicationUserRole.*;
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
+    private final ApplicationUserService applicationUserService;
 
     @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
+    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, ApplicationUserService applicationUserService) {
+
         this.passwordEncoder = passwordEncoder;
+        this.applicationUserService = applicationUserService;
     }
 
     @Override
@@ -49,49 +46,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 
-    @Override
     @Bean
-    protected UserDetailsService userDetailsService() {
-        UserDetails doctor = User
-                .builder()
-                .username("doctor")
-                .password(passwordEncoder.encode("doctor"))
-          //      .roles(DOCTOR.name())   // ROLE_DOCTOR
-            .authorities(DOCTOR.getGrantedAuthorities())
-                .build();
-
-        UserDetails admin = User
-                .builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin"))
-              //  .roles(ADMIN.name())   // ROLE_ADMIN
-               .authorities(ADMIN.getGrantedAuthorities())
-                .build();
-
-        UserDetails person = User
-                .builder()
-                .username("person")
-                .password(passwordEncoder.encode("person"))
-              //  .roles(PERSON.name())   //ROLE_PERSON
-                .authorities(PERSON.getGrantedAuthorities())
-                .build();
-
-        UserDetails intern = User
-                .builder()
-                .username("intern")
-                .password(passwordEncoder.encode("intern"))
-             //   .roles(INTERN.name())   //ROLE_INTERN
-                .authorities(INTERN.getGrantedAuthorities())
-                .build();
-
-        return new InMemoryUserDetailsManager(
-                doctor,
-                admin,
-                person,
-                intern
-        );
+    public DaoAuthenticationProvider daoAuthenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder);
+        provider.setUserDetailsService(applicationUserService);
+        return  provider;
     }
-
-
-
 }
