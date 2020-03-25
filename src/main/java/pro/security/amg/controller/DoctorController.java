@@ -27,6 +27,7 @@ public class DoctorController {
     List<Doctor> showAll(){
         return doctors;
     }
+
     @RequestMapping("/get/{id}")
     Doctor show(@PathVariable("id") String id){
         return doctors.get(0);

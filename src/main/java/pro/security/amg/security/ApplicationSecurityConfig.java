@@ -42,6 +42,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/intern/get/**").hasAuthority(INTERN_READ.getPermission())
                 .antMatchers(HttpMethod.GET,"/api/intern/**").hasAuthority(INTERN_WRITE.getPermission())
                 */
+
                 .anyRequest()
                 .authenticated()
                 .and()

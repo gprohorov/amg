@@ -22,10 +22,13 @@ public class InternController {
     );
 
 
+
     @RequestMapping("get/list")
     List<Intern> showAll(){
         return interns;
     }
+
+
     @RequestMapping("/get/{id}")
     Intern show(@PathVariable("id") String id){
         return interns.get(0);
