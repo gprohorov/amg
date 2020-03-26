@@ -49,24 +49,25 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/welcome", true)
-                .passwordParameter("password")
+             .loginPage("/login")
+             .permitAll()
+               .defaultSuccessUrl("/welcome", true)
+               .passwordParameter("password")
                 .usernameParameter("username")
         .and()
         .rememberMe()
-        .tokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(10))
-        .key("john-lennon")
+       .tokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(10))
+       .key("john-lennon")
                 .rememberMeParameter("remember-me")
-        .and()
+          .and()
         .logout()
         .logoutUrl("/logout")
-        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) //csrf disable
-        .clearAuthentication(true)
+     //    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) //csrf disable
+       .clearAuthentication(true)
         .invalidateHttpSession(true)
         .deleteCookies("JSESSIONID","remember-me")
-        .logoutSuccessUrl("/login")
+         .logoutSuccessUrl("/login")
+     /*  */
         ;
 
     }
