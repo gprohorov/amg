@@ -2,7 +2,7 @@ package pro.security.amg.auth;
 
 import java.util.Optional;
 
-public interface ApplicationUserDao {
+public interface IApplicationUserDao {
 
     Optional<ApplicationUser> selectApplicationUserByUserName(String username);
 }

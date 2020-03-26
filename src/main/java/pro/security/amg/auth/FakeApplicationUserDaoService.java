@@ -12,7 +12,7 @@ import static pro.security.amg.security.ApplicationUserRole.*;
 
 
 @Repository("fake")
-public class FakeApplicationUserDaoService implements ApplicationUserDao {
+public class FakeApplicationUserDaoService implements IApplicationUserDao {
 
     private final PasswordEncoder passwordEncoder;
 
