@@ -23,6 +23,6 @@ public class ApplicationUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return applicationUserDao.selectApplicationUserByUserName(username)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException( String.format(" User   %s   not found",username)));
+                        new UsernameNotFoundException( String.format(" User   %s   not found", username)));
     }
 }

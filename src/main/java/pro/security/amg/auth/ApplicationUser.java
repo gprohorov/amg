@@ -18,14 +18,14 @@ public class ApplicationUser implements UserDetails {
 
 
     public ApplicationUser(
-                           Set<? extends GrantedAuthority> authorities,
-                           String userName,
-                           String password,
-                           boolean accountNonExpired,
-                           boolean accountNonLocked,
-                           boolean credentialsNonExpired,
-                           boolean enabled
-                           ) {
+            Set<? extends GrantedAuthority> authorities,
+            String userName,
+            String password,
+            boolean accountNonExpired,
+            boolean accountNonLocked,
+            boolean credentialsNonExpired,
+            boolean enabled
+    ) {
         this.userName = userName;
         this.password = password;
         this.accountNonExpired = accountNonExpired;

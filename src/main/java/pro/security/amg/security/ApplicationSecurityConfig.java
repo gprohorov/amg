@@ -10,7 +10,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pro.security.amg.auth.ApplicationUserService;
+
+import java.util.concurrent.TimeUnit;
 
 @EnableWebSecurity
 @Configuration
@@ -43,14 +46,36 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic()
+               .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/welcome", true)
+                .passwordParameter("password")
+                .usernameParameter("username")
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(10))
+                .key("john-lennon")
+                .rememberMeParameter("remember-me")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // if csrf disable
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID","remember-me")
+                .logoutSuccessUrl("/login")
+        /*    */
         ;
     }
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
+
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
