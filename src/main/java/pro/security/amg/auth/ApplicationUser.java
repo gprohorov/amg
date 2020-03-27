@@ -1,12 +1,19 @@
 package pro.security.amg.auth;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.util.Collection;
 import java.util.Set;
 
+
 public class ApplicationUser implements UserDetails {
+
+
+    private String id;
 
     private  Set<? extends GrantedAuthority> authorities;
     private String password;
@@ -96,6 +103,18 @@ public class ApplicationUser implements UserDetails {
 
     public void setAuthorities(Set<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     @Override

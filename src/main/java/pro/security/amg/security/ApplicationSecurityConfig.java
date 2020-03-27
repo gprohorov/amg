@@ -52,7 +52,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/welcome", true)
                 .passwordParameter("password")
                 .usernameParameter("username")
-                .and()
+/*  */              .and()
                 .rememberMe()
                 .tokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(10))
                 .key("john-lennon")
@@ -60,7 +60,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // if csrf disable
+               .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // if csrf disable
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID","remember-me")
