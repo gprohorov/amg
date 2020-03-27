@@ -13,8 +13,6 @@ import java.util.Set;
 public class ApplicationUser implements UserDetails {
 
 
-    private String id;
-
     private  Set<? extends GrantedAuthority> authorities;
     private String password;
     private String userName;
@@ -105,13 +103,7 @@ public class ApplicationUser implements UserDetails {
         this.authorities = authorities;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;
