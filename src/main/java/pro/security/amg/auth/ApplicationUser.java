@@ -9,8 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Set;
 
-
+@Document
 public class ApplicationUser implements UserDetails {
+
+    @Id
+     private String id;
 
     private Set<? extends GrantedAuthority> authorities;
     private String password;

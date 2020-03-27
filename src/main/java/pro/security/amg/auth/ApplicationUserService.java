@@ -15,7 +15,7 @@ public class ApplicationUserService implements UserDetailsService {
     private final IApplicationUserDao applicationUserDao;
 
     @Autowired
-    public ApplicationUserService(@Qualifier("fake") IApplicationUserDao applicationUserDao) {
+    public ApplicationUserService(@Qualifier("mongodb") IApplicationUserDao applicationUserDao) {
         this.applicationUserDao = applicationUserDao;
     }
 
