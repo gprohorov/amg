@@ -12,16 +12,13 @@ import java.util.Set;
 
 public class ApplicationUser implements UserDetails {
 
-
-    private String id;
-
-    private  Set<? extends GrantedAuthority> authorities;
+    private Set<? extends GrantedAuthority> authorities;
     private String password;
     private String userName;
-    private  boolean accountNonExpired;
-    private  boolean accountNonLocked;
-    private  boolean credentialsNonExpired;
-    private  boolean enabled;
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
+    private boolean enabled;
 
 
     public ApplicationUser(
