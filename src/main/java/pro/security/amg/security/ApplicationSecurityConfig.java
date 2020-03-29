@@ -9,9 +9,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pro.security.amg.auth.ApplicationUserService;
+import pro.security.amg.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,25 +36,28 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
+
+
                 .authorizeRequests()
                 .antMatchers("/", "/css", "/js")
                 .permitAll()
-/*
-                .antMatchers(HttpMethod.GET,"/api/person/get/**").hasAuthority(PERSON_READ.getPermission())
-                .antMatchers(HttpMethod.GET,"/api/person/**").hasAuthority(PERSON_WRITE.getPermission())
-                .antMatchers(HttpMethod.GET,"/api/intern/get/**").hasAuthority(INTERN_READ.getPermission())
-                .antMatchers(HttpMethod.GET,"/api/intern/**").hasAuthority(INTERN_WRITE.getPermission())
-                */
+
                 .anyRequest()
                 .authenticated()
-                .and()
-               .formLogin()
+      /*            .and()
+              .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .defaultSuccessUrl("/welcome", true)
                 .passwordParameter("password")
                 .usernameParameter("username")
-/*  */              .and()
+             .and()
                 .rememberMe()
                 .tokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(10))
                 .key("john-lennon")
@@ -65,7 +70,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID","remember-me")
                 .logoutSuccessUrl("/login")
-        /*    */
+           */
         ;
     }
 
