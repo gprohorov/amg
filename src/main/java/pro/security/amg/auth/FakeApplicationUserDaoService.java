@@ -23,10 +23,37 @@ public class FakeApplicationUserDaoService implements IApplicationUserDao {
 
     @Override
     public Optional<ApplicationUser> selectApplicationUserByUserName(String username) {
+        System.out.println(" ---------------- FAKE DATA WAS CALLED -----------------");
+
         return this.getApplicationUsers().stream()
                 .filter(user -> user.getUsername().equals(username))
                 .findFirst()
                 ;
+    }
+
+    @Override
+    public List<ApplicationUser> getAll() {
+        return null;
+    }
+
+    @Override
+    public ApplicationUser create(ApplicationUser user) {
+        return null;
+    }
+
+    @Override
+    public ApplicationUser update(ApplicationUser user) {
+        return null;
+    }
+
+    @Override
+    public ApplicationUser get(String id) {
+        return null;
+    }
+
+    @Override
+    public ApplicationUser delete(String id) {
+        return null;
     }
 
 
