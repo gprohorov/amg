@@ -49,8 +49,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
             Authentication authenticate = authenticationManager.authenticate(authentication);
 
-            System.out.println("------------authenticate)----------------");
-            System.out.println(authenticate);
             return authenticate;
 
 
@@ -76,7 +74,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .signWith(key)
                 .compact();
 
-        response.addHeader("Autorization", "Bearer " + token);
+        response.addHeader("Authorization", "Bearer " + token);
     }
 
 

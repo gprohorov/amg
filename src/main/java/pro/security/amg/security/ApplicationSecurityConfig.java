@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pro.security.amg.auth.ApplicationUserService;
+import pro.security.amg.jwt.JwtTokenVerifier;
 import pro.security.amg.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 
 import java.util.concurrent.TimeUnit;
@@ -43,6 +44,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
 
+                //     ADD NEW FILTER   - VERIFIER
+              .addFilterAfter(new JwtTokenVerifier(), JwtUsernameAndPasswordAuthenticationFilter.class)
 
                 .authorizeRequests()
                 .antMatchers("/", "/css", "/js")
@@ -50,27 +53,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .anyRequest()
                 .authenticated()
-      /*            .and()
-              .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/welcome", true)
-                .passwordParameter("password")
-                .usernameParameter("username")
-             .and()
-                .rememberMe()
-                .tokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(10))
-                .key("john-lennon")
-                .rememberMeParameter("remember-me")
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // if csrf disable
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID","remember-me")
-                .logoutSuccessUrl("/login")
-           */
+
         ;
     }
 

@@ -33,8 +33,6 @@ public class MongoApplicationUserDaoService implements IApplicationUserDao {
 
     @Override
     public Optional<ApplicationUser> selectApplicationUserByUserName(String username) {
-        System.out.println(" ---------------- MONGODB DATA WAS CALLED -----------------");
-
         return this.repository.findAll().stream()
                 .filter(user -> user.getUsername().equals(username))
                 .findFirst()
