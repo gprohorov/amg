@@ -47,11 +47,11 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                     authenticationRequest.getPassword()
             );
 
-            Authentication authenticate = authenticationManager.authenticate(authentication);
+            Authentication authenticated = authenticationManager.authenticate(authentication);
 
             System.out.println("------------authenticate)----------------");
-            System.out.println(authenticate);
-            return authenticate;
+            System.out.println(authenticated);
+            return authenticated;
 
 
         } catch (IOException e) {
@@ -66,7 +66,9 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                                             Authentication authResult)
                                             throws IOException, ServletException {
         //SecretKey key = null;
-        SecretKey key = Keys.hmacShaKeyFor("Hello World!!!3333333333333333333333333333333333333333".getBytes());
+        SecretKey key = Keys
+
+                .hmacShaKeyFor("Hello World!!!11111111111111111111111111".getBytes());
 
         String token = Jwts.builder()
                 .setSubject(authResult.getName())
