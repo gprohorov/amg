@@ -69,7 +69,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .signWith(key)
                 .compact();
 
-        response.addHeader("Autorization", "Bearer " + token);
+        response.addHeader("Authorization", "Bearer " + token);
     }
 
 
