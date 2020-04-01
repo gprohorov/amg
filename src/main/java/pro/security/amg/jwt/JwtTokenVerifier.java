@@ -42,7 +42,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
 
         String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 
-        if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(jwtConfig.getAuthorizationHeader())) {
+        if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -51,8 +51,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
 
         System.out.println();
         try {
-
-            String key = jwtConfig.getSecretKey();
+            SecretKey key = secretKey;
 
             Jws<Claims> claimsJws = Jwts.parser()
                     .setSigningKey(key)

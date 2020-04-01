@@ -26,12 +26,13 @@ public class InternController {
     List<Intern> showAll(){
         return interns;
     }
+
     @RequestMapping("/get/{id}")
     Intern show(@PathVariable("id") String id){
         return interns.get(0);
     }
 
-     @RequestMapping("/delete/{id}")
+    @RequestMapping("/delete/{id}")
      Intern delete(@PathVariable("id") String id){
 
          System.out.println("Intern deleted");
