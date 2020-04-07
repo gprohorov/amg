@@ -39,17 +39,19 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
 
+      //  http.cors().disable();
+        http
+              .cors()
+                .and()
+                .csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
 
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
 
-                //     ADD NEW FILTER   - VERIFIER
-              .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
 
                 .authorizeRequests()
                 .antMatchers("/", "/css", "/js")
@@ -57,17 +59,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .anyRequest()
                 .authenticated()
-
         ;
     }
-
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
-
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
