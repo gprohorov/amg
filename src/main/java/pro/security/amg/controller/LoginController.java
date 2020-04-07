@@ -1,35 +1,23 @@
 package pro.security.amg.controller;
 
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-//@CrossOrigin("*")
-@RestController
+@Controller
 @RequestMapping("/")
 public class LoginController {
 
-
-    @PostMapping("login")
+    @GetMapping("login")
     String getLoginForm(){
-
         return "login";
     }
 
-@PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("api/page")
-    String getApiPage(){
-
-        System.out.println("CALLED API");
-
-        return "You are welcome! Access is permited";
-    }
 
     @GetMapping("welcome")
     String getWelcome(){
         return "welcome";
     }
-
-
 }
