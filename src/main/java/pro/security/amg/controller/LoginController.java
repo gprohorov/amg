@@ -2,22 +2,22 @@ package pro.security.amg.controller;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+//@CrossOrigin(origins = "*")
+@RestController
 @RequestMapping("/")
 public class LoginController {
 
-    @GetMapping("login")
+    @CrossOrigin(origins = "*")
+    @PostMapping("login")
     String getLoginForm(){
         return "login";
     }
 
 
-    @GetMapping("welcome")
+    @GetMapping("api/welcomepage")
     String getWelcome(){
-        return "welcome";
+        return "You have got an access to API routes";
     }
 }
