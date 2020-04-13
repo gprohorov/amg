@@ -23,12 +23,12 @@ public class DoctorController {
             )
     );
 
-
-    @RequestMapping("get/list")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @RequestMapping("get/list")
     List<Doctor> showAll(){
         return doctors;
     }
+
     @RequestMapping("/get/{id}")
     Doctor show(@PathVariable("id") String id){
         return doctors.get(0);

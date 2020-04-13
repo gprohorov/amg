@@ -16,30 +16,36 @@ public class ApplicationUser implements UserDetails {
      private String id;
 
     private Set<? extends GrantedAuthority> authorities;
+    private String username;
     private String password;
-    private String userName;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
 
 
-    public ApplicationUser(
-            Set<? extends GrantedAuthority> authorities,
-            String userName,
-            String password,
-            boolean accountNonExpired,
-            boolean accountNonLocked,
-            boolean credentialsNonExpired,
-            boolean enabled
-    ) {
-        this.userName = userName;
+    public ApplicationUser() {
+    }
+
+    public ApplicationUser(Set<? extends GrantedAuthority> authorities, String username, String password, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
+        this.authorities = authorities;
+        this.username = username;
         this.password = password;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;
         this.enabled = enabled;
+    }
+
+    public ApplicationUser(String id, Set<? extends GrantedAuthority> authorities, String username, String password, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
+        this.id = id;
         this.authorities = authorities;
+        this.username = username;
+        this.password = password;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
     }
 
     @Override
@@ -54,8 +60,9 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -81,9 +88,6 @@ public class ApplicationUser implements UserDetails {
         this.password = password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public void setAccountNonExpired(boolean accountNonExpired) {
         this.accountNonExpired = accountNonExpired;
@@ -105,17 +109,15 @@ public class ApplicationUser implements UserDetails {
         this.authorities = authorities;
     }
 
-
-
-    public String getUserName() {
-        return userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
     public String toString() {
         return "ApplicationUser{" +
+                ", username='" + username + '\'' +
                 "password='" + password + '\'' +
-                ", userName='" + userName + '\'' +
                 ", accountNonExpired=" + accountNonExpired +
                 ", accountNonLocked=" + accountNonLocked +
                 ", credentialsNonExpired=" + credentialsNonExpired +

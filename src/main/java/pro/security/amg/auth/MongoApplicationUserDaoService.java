@@ -24,9 +24,10 @@ public class MongoApplicationUserDaoService implements IApplicationUserDao {
         this.repository = repository;
     }
 
-//    @PostConstruct
+  // @PostConstruct
     void init(){
-   repository.saveAll(this.getApplicationUsers());
+        repository.deleteAll();;
+        repository.saveAll(this.getApplicationUsers());
     }
 
 
