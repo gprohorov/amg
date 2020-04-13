@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,11 +29,14 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
 
     private final SecretKey secretKey;
     private final JwtConfig jwtConfig;
+    public String currentUser = "122334";
 
     public JwtTokenVerifier(SecretKey secretKey, JwtConfig jwtConfig) {
         this.secretKey = secretKey;
         this.jwtConfig = jwtConfig;
     }
+
+
 
 
     @Override
@@ -60,6 +64,15 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             Claims body = claimsJws.getBody();
 
             String username = body.getSubject();
+
+            this.currentUser = username;
+/*
+
+            @Bean
+            public String currentUser() {
+                return null;
+            }
+*/
 
             List<Map<String, String>> authorities = (List<Map<String, String>>) body.get("authorities");
 

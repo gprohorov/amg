@@ -1,8 +1,11 @@
 package pro.security.amg.model;
 
+import pro.security.amg.auth.ApplicationUser;
+
 public class Doctor {
     private int id;
     private String name;
+    private ApplicationUser applicationUser;
 
     public Doctor() {
     }

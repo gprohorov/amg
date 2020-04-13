@@ -62,8 +62,8 @@ public class FakeApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         ADMIN.getGrantedAuthorities(),
-                        "admin",
                         passwordEncoder.encode("admin"),
+                        "admin",
                         true,
                         true,
                         true,
@@ -71,8 +71,8 @@ public class FakeApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         DOCTOR.getGrantedAuthorities(),
-                        "doctor",
                         passwordEncoder.encode("doctor"),
+                        "doctor",
                         true,
                         true,
                         true,
@@ -80,8 +80,8 @@ public class FakeApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         INTERN.getGrantedAuthorities(),
-                        "intern",
                         passwordEncoder.encode("intern"),
+                        "intern",
                         true,
                         true,
                         true,
@@ -89,8 +89,8 @@ public class FakeApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         PERSON.getGrantedAuthorities(),
-                        "person",
                         passwordEncoder.encode("person"),
+                        "person",
                         true,
                         true,
                         true,

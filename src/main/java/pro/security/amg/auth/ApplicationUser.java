@@ -16,8 +16,8 @@ public class ApplicationUser implements UserDetails {
      private String id;
 
     private Set<? extends GrantedAuthority> authorities;
-    private String username;
     private String password;
+    private String username;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
@@ -27,21 +27,21 @@ public class ApplicationUser implements UserDetails {
     public ApplicationUser() {
     }
 
-    public ApplicationUser(Set<? extends GrantedAuthority> authorities, String username, String password, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
+    public ApplicationUser(Set<? extends GrantedAuthority> authorities, String password, String username, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
         this.authorities = authorities;
-        this.username = username;
         this.password = password;
+        this.username = username;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;
         this.enabled = enabled;
     }
 
-    public ApplicationUser(String id, Set<? extends GrantedAuthority> authorities, String username, String password, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
+    public ApplicationUser(String id, Set<? extends GrantedAuthority> authorities, String password, String username, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
         this.id = id;
         this.authorities = authorities;
-        this.username = username;
         this.password = password;
+        this.username = username;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;

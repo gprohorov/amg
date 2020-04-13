@@ -1,13 +1,12 @@
 package pro.security.amg.security;
 
 import com.google.common.collect.Sets;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static pro.security.amg.security.ApplicatioUserPermission.*;
+import static pro.security.amg.security.ApplicationUserPermission.*;
 
 public enum ApplicationUserRole {
 
@@ -17,13 +16,13 @@ public enum ApplicationUserRole {
     PERSON(Sets.newHashSet());
 
 
-    private final Set<ApplicatioUserPermission> permissions;
+    private final Set<ApplicationUserPermission> permissions;
 
-    ApplicationUserRole(Set<ApplicatioUserPermission> permissions) {
+    ApplicationUserRole(Set<ApplicationUserPermission> permissions) {
         this.permissions = permissions;
     }
 
-    public Set<ApplicatioUserPermission> getPermissions() {
+    public Set<ApplicationUserPermission> getPermissions() {
         return permissions;
     }
 

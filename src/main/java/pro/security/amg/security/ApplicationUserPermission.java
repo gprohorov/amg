@@ -1,6 +1,6 @@
 package pro.security.amg.security;
 
-public enum ApplicatioUserPermission {
+public enum ApplicationUserPermission {
 
     PERSON_READ("person:read"),
     PERSON_WRITE("person:write"),
@@ -13,7 +13,7 @@ public enum ApplicatioUserPermission {
 
     private final String permission;
 
-    ApplicatioUserPermission(String permission) {
+    ApplicationUserPermission(String permission) {
         this.permission = permission;
     }
 

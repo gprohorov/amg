@@ -24,9 +24,9 @@ public class MongoApplicationUserDaoService implements IApplicationUserDao {
         this.repository = repository;
     }
 
-  // @PostConstruct
+ @PostConstruct
     void init(){
-        repository.deleteAll();;
+        repository.deleteAll();
         repository.saveAll(this.getApplicationUsers());
     }
 
@@ -71,8 +71,8 @@ public class MongoApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         ADMIN.getGrantedAuthorities(),
-                        "admin",
                         passwordEncoder.encode("admin"),
+                        "admin",
                         true,
                         true,
                         true,
@@ -80,8 +80,8 @@ public class MongoApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         DOCTOR.getGrantedAuthorities(),
-                        "doctor",
                         passwordEncoder.encode("doctor"),
+                        "doctor",
                         true,
                         true,
                         true,
@@ -89,8 +89,8 @@ public class MongoApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         INTERN.getGrantedAuthorities(),
-                        "intern",
                         passwordEncoder.encode("intern"),
+                        "intern",
                         true,
                         true,
                         true,
@@ -98,8 +98,8 @@ public class MongoApplicationUserDaoService implements IApplicationUserDao {
 
                 new ApplicationUser(
                         PERSON.getGrantedAuthorities(),
-                        "person",
                         passwordEncoder.encode("person"),
+                        "person",
                         true,
                         true,
                         true,
